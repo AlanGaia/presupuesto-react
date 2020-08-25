@@ -1,5 +1,6 @@
 import React , { useState } from 'react';
 import Pregunta from './components/Pregunta';
+import Formulario from './components/Formulario';
 
 
 function App() {
@@ -20,6 +21,17 @@ function App() {
             guardarPresupuesto={guardarPresupuesto}
             guardarRestante={guardarRestante}
           />
+
+
+          <div className="row">
+            {/* Formulario para agregar Gastos */}
+            <div className="one-half column">
+              <Formulario />
+            </div>
+            
+            <div className="one-half column">2</div>
+          </div>
+
         </div>
       </header>
     </div>
