@@ -9,29 +9,39 @@ function App() {
   const [presupuesto, guardarPresupuesto] = useState(0);
   //State restante
   const [restante, guardarRestante] = useState(0);
+  //State condicional para mostrar pregunta
+  const [mostrarpregunta, actualizarPregunta] = useState(true);
 
 
   return (
     <div className="container">
       <header>
         <h1>Gasto Semanal</h1>
-        
         <div className="contenido-principal contenido">
+        
+        {mostrarpregunta ? (
+          // Preguntar presupuesto si no esta definido
+
           <Pregunta
             guardarPresupuesto={guardarPresupuesto}
             guardarRestante={guardarRestante}
+            actualizarPregunta={actualizarPregunta}
           />
-
+        ) : (
+          //Si está definido acceder a los gastos del presupuesto
 
           <div className="row">
-            {/* Formulario para agregar Gastos */}
             <div className="one-half column">
+              {/* Formulario para agregar Gastos del presupuesto */}
               <Formulario />
             </div>
-            
-            <div className="one-half column">2</div>
+
+            <div className="one-half column">Tus Gastos $</div>
           </div>
 
+        )}
+
+        
         </div>
       </header>
     </div>
