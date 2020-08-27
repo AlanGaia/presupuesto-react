@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Error from './Error';
 import shortid from 'shortid';
 
-const Formulario = ({agregarNuevoGasto}) => {
+const Formulario = ({guardarGasto, guardarExisteAlgunGasto}) => {
 
   const [nombre, guardarNombre] = useState('');
   const [cantidad, guardarCantidad] = useState(0);
@@ -29,7 +29,10 @@ const Formulario = ({agregarNuevoGasto}) => {
     }
 
     //sumar el gasto en el componente APP
-    agregarNuevoGasto(gasto);
+    guardarGasto(gasto);
+
+    //Al menos existe un Gasto
+    guardarExisteAlgunGasto(true);
 
     
 
