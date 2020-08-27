@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
+import Error from './Error';
+import shortid from 'shortid';
 
 const Formulario = () => {
 
   const [nombre, guardarNombre] = useState('');
   const [cantidad, guardarCantidad] = useState(0);
+  const [error, guardarError] = useState(false);
 
 
   //Handle submit
@@ -11,8 +14,21 @@ const Formulario = () => {
     e.preventDefault();
 
     //validar
+    if(cantidad < 1 || isNaN(cantidad) || nombre.trim() === ''){
+      guardarError(true);
+      return;
+    }
+    //si paso la validación no hay error
+    guardarError(false);
 
     //crear gasto
+    const gasto = {
+      nombre,
+      cantidad,
+      id: shortid.generate()
+    }
+
+    console.log(gasto);
 
     //sumar el gasto en el componente APP
 
@@ -24,6 +40,8 @@ const Formulario = () => {
       onSubmit={agregarGasto}
     >
       <h2>Agrega tus gastos</h2>
+
+      {error ? <Error mensaje="Presupuesto incorrecto, ambos campos son requeridos" /> : null }
 
       <div className="campo">
         <label>Nombre del gasto</label>
