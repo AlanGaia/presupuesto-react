@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import Error from './Error';
 import shortid from 'shortid';
+import PropTypes from 'prop-types';
+
 
 const Formulario = ({guardarGasto, guardarExisteAlgunGasto}) => {
 
@@ -34,9 +36,9 @@ const Formulario = ({guardarGasto, guardarExisteAlgunGasto}) => {
     //Al menos existe un Gasto
     guardarExisteAlgunGasto(true);
 
-    
-
     //resetear form
+    guardarNombre('');
+    guardarCantidad(0);
   }
 
   return (
@@ -78,6 +80,11 @@ const Formulario = ({guardarGasto, guardarExisteAlgunGasto}) => {
 
     </form>
   );
+}
+
+Formulario.propTypes = {
+  guardarGasto: PropTypes.func.isRequired,
+  guardarExisteAlgunGasto: PropTypes.func.isRequired,
 }
 
 export default Formulario;

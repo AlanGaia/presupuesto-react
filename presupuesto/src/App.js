@@ -24,21 +24,21 @@ function App() {
   //UseEffect que actualiza el saldo restante
   useEffect(() => {
 
-    //Crear Gasto al presupuesto
+    //Si se genero algun Gasto, crearlo
     if(existeAlgunGasto){
       guardarGastos([
         ...gastos,
         gasto
       ])
+
+      //restar del presupuesto disponible el nuevo gasto
+      const presupuestoRestante = restante - gasto.cantidad;
+      guardarRestante(presupuestoRestante);
+
+      //Setear False existeAlgunGasto para evitar bucle
+      guardarExisteAlgunGasto(false);
     }
-
-    //restar del presupuesto disponible el nuevo gasto
-    const presupuestoRestante = restante - gasto.cantidad;
-    guardarRestante(presupuestoRestante);
-
-    
-  }, [gasto]);
-
+  }, [gasto, restante, gastos, existeAlgunGasto]);
 
 
   return (
