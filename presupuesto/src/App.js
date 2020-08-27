@@ -11,6 +11,17 @@ function App() {
   const [restante, guardarRestante] = useState(0);
   //State condicional para mostrar pregunta
   const [mostrarpregunta, actualizarPregunta] = useState(true);
+  //State para array de gastos
+  const [gastos, guardarGastos] = useState([]);
+
+
+  //agregar un nuevo gasto al array de gastos
+  const agregarNuevoGasto = gasto => {
+    guardarGastos([
+      ...gastos,
+      gasto]);
+  }
+
 
 
   return (
@@ -33,7 +44,9 @@ function App() {
           <div className="row">
             <div className="one-half column">
               {/* Formulario para agregar Gastos del presupuesto */}
-              <Formulario />
+              <Formulario
+                agregarNuevoGasto={agregarNuevoGasto}
+              />
             </div>
 
             <div className="one-half column">Tus Gastos $</div>
